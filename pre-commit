@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+[[ $TRACE ]] && set -x
+
+main() {
+  for hook in "${BASH_SOURCE%/*}"/pre-commit.d/*; do
+    "$hook" "$@"
+  done
+}
+
+main "$@"
