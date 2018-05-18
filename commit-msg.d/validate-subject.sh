@@ -10,7 +10,7 @@ main() {
 
   read -r header < "$commit_message_path"
 
-  [[ $header == *"$current_branch"* ]] && exit
+  [[ $header == "$current_branch"* ]] && exit
 
   __prevent_commit "$current_branch"
 }
