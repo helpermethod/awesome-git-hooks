@@ -5,12 +5,13 @@
 main() {
   local current_branch=$(git rev-parse --abbrev-ref HEAD)
   local commit_message_path=$1
+  local commit_message_source=$2
 
   [[ $current_branch = HEAD ]] && exit
 
-  [[ $2 ]] && exit 
+  [[ $commit_message_source ]] && exit 
 
-  __prepend "$current_branch " "$commit_message_path"
+  __prepend "${current_branch#*/} " "$commit_message_path"
 }
 
 __prepend() {
