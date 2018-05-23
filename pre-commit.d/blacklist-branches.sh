@@ -25,7 +25,7 @@ __prevent_commit() {
   local yellow_bold=$(tput setaf 3)$(tput bold)
   local reset=$(tput sgr0)
 
-  printf '%sDirect commits to %s%s%s%s are not allowed.%s\n' "$red" "$yellow_bold" "$1" "$reset" "$red" "$reset"
+  printf '%sDirect commits to %s%s%s%s are not allowed.%s\n' "$red" "$yellow_bold" "$1" "$reset" "$red" "$reset" 2>&1
 
   exit 1
 }
