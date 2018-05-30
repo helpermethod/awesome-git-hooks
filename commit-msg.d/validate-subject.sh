@@ -8,11 +8,12 @@ main() {
 
   [[ $current_branch = HEAD ]] && exit
 
+  local issue_key=${current_branch#*/}
   read -r header < "$commit_message_path"
 
-  [[ $header == "$current_branch"* ]] && exit
+  [[ $header == *"$issue_key"* ]] && exit
 
-  __prevent_commit "$current_branch"
+  __prevent_commit "$issue_key"
 }
 
 __prevent_commit() {
