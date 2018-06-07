@@ -10,9 +10,7 @@ main() {
   [[ $current_branch = HEAD ]] && exit
   [[ $commit_message_source ]] && exit 
 
-  local issue_key=${current_branch#*/}
-
-  __prepend "$issue_key " "$commit_message_path"
+  __prepend "$branch_name" "$commit_message_path"
 }
 
 __prepend() {
