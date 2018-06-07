@@ -3,14 +3,19 @@
 [[ $TRACE ]] && set -x
 
 main() {
-  local current_branch=$(git symbolic-ref --short HEAD)
+  local current_branch
+  current_branch=$(git symbolic-ref -q --short HEAD)
+
+  (($? > 0)) && exit
+
   local commit_message_path=$1
   local commit_message_source=$2
 
-  [[ $current_branch = HEAD ]] && exit
   [[ $commit_message_source ]] && exit 
 
-  __prepend "$branch_name" "$commit_message_path"
+  local issue_key=${current_branch#*/}
+
+  __prepend "$issue_key " "$commit_message_path"
 }
 
 __prepend() {
