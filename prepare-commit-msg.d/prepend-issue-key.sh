@@ -8,7 +8,6 @@ main() {
   local commit_message_source=$2
 
   [[ $current_branch = HEAD ]] && exit
-
   [[ $commit_message_source ]] && exit 
 
   local issue_key=${current_branch#*/}
