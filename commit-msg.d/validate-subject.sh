@@ -3,7 +3,7 @@
 [[ $TRACE ]] && set -x
 
 main() {
-  local current_branch=$(git rev-parse --abbrev-ref HEAD)
+  local current_branch=$(git symbolic-ref --short HEAD)
   local commit_message_path=$1
 
   [[ $current_branch = HEAD ]] && exit
