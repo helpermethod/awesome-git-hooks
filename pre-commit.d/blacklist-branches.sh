@@ -6,11 +6,14 @@ main() {
   local current_branch
   current_branch=$(git symbolic-ref --short HEAD)
 
-  (($? > 0)) && exit
-
+  __is_detached && exit
   ! __is_blacklisted "$current_branch" && exit
 
   __prevent_commit "$current_branch"
+}
+
+__is_detached() {
+  (($? > 0))
 }
 
 __is_blacklisted() {

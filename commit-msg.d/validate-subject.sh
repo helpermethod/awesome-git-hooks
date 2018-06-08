@@ -6,7 +6,7 @@ main() {
   local issue_ke
   current_branch=$(git symbolic-ref -q --short HEAD)
 
-  (($? > 0)) && exit
+  __is_detached && exit
 
   local commit_message_path=$1
   read -r header < "$commit_message_path"
@@ -16,6 +16,10 @@ main() {
   [[ $header == "$issue_key"* ]] && exit
 
   __prevent_commit "$issue_key"
+}
+
+__is_detached() {
+  (($? > 0))
 }
 
 __prevent_commit() {
