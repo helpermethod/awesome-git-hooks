@@ -3,8 +3,7 @@
 [[ $TRACE ]] && set -x
 
 main() {
-  local issue_ke
-  current_branch=$(git symbolic-ref -q --short HEAD)
+  local current_branch=$(git symbolic-ref -q --short HEAD)
 
   __is_detached && exit
 
@@ -13,7 +12,7 @@ main() {
 
   local issue_key=${current_branch#*/}
 
-  [[ $header == "$issue_key"* ]] && exit
+  [[ $header == *"$issue_key"* ]] && exit
 
   __prevent_commit "$issue_key"
 }
