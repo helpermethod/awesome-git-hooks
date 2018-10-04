@@ -22,9 +22,13 @@ __is_detached() {
 }
 
 __prevent_commit() {
-  local red=$(tput setaf 1) 
-  local yellow_bold=$(tput setaf 3)$(tput bold)
-  local reset=$(tput sgr0)
+  declare red yellow_bold reset
+
+  if [[ -t 1 ]]; then
+    red=$(tput setaf 1)
+    yellow_bold=$(tput setaf 3)$(tput bold)
+    reset=$(tput sgr0)
+  fi
 
   printf '%sThe subject line must contain the JIRA issue number %s(%s)%s%s.%s\n' "$red" "$yellow_bold" "$1" "$reset" "$red" "$reset" 2>&1
   exit 1
