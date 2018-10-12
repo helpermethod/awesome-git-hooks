@@ -27,9 +27,13 @@ __is_blacklisted() {
 }
 
 __prevent_commit() {
-  local red=$(tput setaf 1)
-  local yellow_bold=$(tput setaf 3)$(tput bold)
-  local reset=$(tput sgr0)
+  declare red yellow_bold reset
+
+  if [[ -t 1 ]]; then
+    local red=$(tput setaf 1)
+    local yellow_bold=$(tput setaf 3)$(tput bold)
+    local reset=$(tput sgr0)
+  fi
 
   printf '%sDirect commits to %s%s%s%s are not allowed.%s\n' "$red" "$yellow_bold" "$1" "$reset" "$red" "$reset" 2>&1
 
