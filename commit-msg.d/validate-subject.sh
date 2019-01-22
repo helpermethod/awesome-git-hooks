@@ -3,7 +3,8 @@
 [[ $TRACE ]] && set -x
 
 main() {
-  local current_branch=$(git symbolic-ref -q --short HEAD)
+  local current_branch
+  current_branch=$(git symbolic-ref -q --short HEAD)
 
   __is_detached && exit
 
