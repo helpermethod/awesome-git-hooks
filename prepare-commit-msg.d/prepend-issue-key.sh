@@ -23,7 +23,7 @@ __is_detached() {
 }
 
 __prepend() {
-  printf '%s%s' "$1" "$(< $2)" > "$2"
+  printf '%s%s' "$1" "$(< "$2")" > "$2"
 }
 
 main "$@"
