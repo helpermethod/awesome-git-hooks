@@ -23,7 +23,7 @@ __is_detached() {
 }
 
 __prevent_commit() {
-  declare red yellow_bold reset
+  local red yellow_bold reset
 
   if [[ -t 1 ]]; then
     red=$(tput setaf 1)
