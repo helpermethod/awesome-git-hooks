@@ -17,7 +17,7 @@ __is_detached() {
 }
 
 __is_blacklisted() {
-  local blacklist=(develop master)
+  local blacklist=(main master)
 
   for branch in "${blacklist[@]}"; do
     [[ $branch = "$1" ]] && return
